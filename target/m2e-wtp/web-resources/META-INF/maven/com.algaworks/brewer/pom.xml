@@ -18,7 +18,16 @@
   		<servlet.version>3.1.0</servlet.version>
   		<thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
   		<hibernate-validator.version>6.0.10.Final</hibernate-validator.version>
-
+  		<hibernate.version>5.3.3.Final</hibernate.version>
+		<flyway-maven-plugin.version>5.1.4</flyway-maven-plugin.version>
+		
+		
+        <flyway.version>4.0.3</flyway.version>
+        <postgres.driver.version>9.3-1104-jdbc4</postgres.driver.version>
+        <database.url>jdbc:postgresql://localhost:5432/brewer</database.url>
+        <database.user>postgres</database.user>
+        <databese.password>176801</databese.password>
+        
   </properties>
   
   <build>
@@ -31,6 +40,21 @@
 	  				<target>${java.version}</target>
 	  			</configuration>
   			</plugin>
+  			
+  			<plugin>
+  				<groupId>org.flywaydb</groupId>
+  				<artifactId>flyway-maven-plugin</artifactId>
+  				<version>${flyway-maven-plugin.version}</version>
+  				<configuration>
+  					<!-- <driver>com.postgresql.jdbc.Driver</driver> -->
+                    <url>${database.url}</url>
+                    <user>${database.user}</user>
+                    <password>${databese.password}</password>
+  				</configuration>
+  			</plugin>
+  			
+  			
+  			
   		</plugins>
   </build>
   
@@ -72,7 +96,7 @@
 	  	
 	  	<!-- Bean Validação / Hibernate Validador -->
 	  	<dependency>
-	  		<groupId>org.hibernate</groupId>
+	  		<groupId>org.hibernate.validator</groupId>
 	  		<artifactId>hibernate-validator</artifactId>
 	  		<version>${hibernate-validator.version}</version>
 	  		<scope>compile</scope>	  		
@@ -84,7 +108,31 @@
 		  <artifactId>thymeleaf-layout-dialect</artifactId>
 		  <version>2.3.0</version>
 		</dependency>
+		
+		<!-- JPA / Hibernate -->
+	  	<dependency>
+	  		<groupId>org.hibernate</groupId>
+	  		<artifactId>hibernate-entitymanager</artifactId>
+	  		<version>${hibernate.version}</version>
+	  		<scope>compile</scope>
+	  	</dependency>
 	  	
+	  	<!-- Hibernate - Java 8 support -->
+	  	<dependency>
+			<groupId>org.hibernate</groupId>
+	  		<artifactId>hibernate-java8</artifactId>
+	  		<version>${hibernate.version}</version>
+			<scope>compile</scope>
+	  	</dependency>
+	  	
+	  	<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${postgres.driver.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		
+				
   </dependencies>
   
 </project>
