@@ -28,6 +28,9 @@
         <database.user>postgres</database.user>
         <databese.password>176801</databese.password>
         
+        <!-- Spring Data JPA -->
+        <spring-data-jpa.version>2.0.9.RELEASE</spring-data-jpa.version>
+        
   </properties>
   
   <build>
@@ -52,8 +55,6 @@
                     <password>${databese.password}</password>
   				</configuration>
   			</plugin>
-  			
-  			
   			
   		</plugins>
   </build>
@@ -125,6 +126,7 @@
 			<scope>compile</scope>
 	  	</dependency>
 	  	
+	  	<!-- PostgreSQL Driver -->
 	  	<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -132,6 +134,12 @@
 			<scope>provided</scope>
 		</dependency>
 		
+		<!-- Spring Data JPA -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>${spring-data-jpa.version}</version>
+		</dependency>
 				
   </dependencies>
   
