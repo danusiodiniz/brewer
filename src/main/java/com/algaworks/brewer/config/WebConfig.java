@@ -6,6 +6,8 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.support.DefaultFormattingConversionService;
+import org.springframework.format.support.FormattingConversionService;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -19,6 +21,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import com.algaworks.brewer.controller.CervejasController;
+import com.algaworks.brewer.controller.converter.EstiloConverter;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
@@ -66,4 +69,13 @@ public class WebConfig implements ApplicationContextAware, WebMvcConfigurer {
 //		WebMvcConfigurer.super.addResourceHandlers(registry);
 		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
 	}
+	
+	@Bean
+	public FormattingConversionService mvcConversionService() {
+		DefaultFormattingConversionService converterService = new DefaultFormattingConversionService();
+		converterService.addConverter(new EstiloConverter());
+		
+		return converterService;
+	}
+	
 }

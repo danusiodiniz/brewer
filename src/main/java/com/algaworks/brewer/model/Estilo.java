@@ -25,6 +25,14 @@ public class Estilo implements Serializable {
 	@OneToMany(mappedBy="estilo")
 	private List<Cerveja> cervejas;
 
+	public Long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
+
 	public String getNome() {
 		return nome;
 	}
